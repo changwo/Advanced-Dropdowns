@@ -16,7 +16,6 @@ const DropDown = styled.div`
   background-color: ${props => props.theme.bg};
   border: ${props => props.theme.border};
   border-radius: ${props => props.theme.borderRadius};
-  padding: 1rem;
   overflow: hidden;
   
   transition: height ${props => props.theme.speed} ease;
@@ -35,6 +34,8 @@ const MenuItem = styled.a`
 
 const Box = styled.div`
   width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 `
 
 const TransitionPrimary = styled(CSSTransition)`
@@ -91,6 +92,7 @@ const DropDownMenu = () => {
     const dropdownRef = useRef(null)
 
     useEffect(() => {
+        setMenuHeight(0)
         setMenuHeight(dropdownRef.current.firstChild.offsetHeight)
         console.log(dropdownRef.current.firstChild.offsetHeight)
     }, [])

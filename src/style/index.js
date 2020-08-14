@@ -2,11 +2,14 @@ import {createGlobalStyle} from "styled-components";
 
 
 export const GlobalStyle = createGlobalStyle`
-    * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: #151616;
+      font-family: 'Poppins', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
     ul {
@@ -18,26 +21,6 @@ export const GlobalStyle = createGlobalStyle`
     a {
       color: ${props => props.theme.textColor};
       text-decoration: none;
-    }
-    
-    ::-webkit-scrollbar-track
-    {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      border-radius: 10px;
-      background-color: #F5F5F5;
-    }
-    
-    ::-webkit-scrollbar
-    {
-      width: 8px;
-      background-color: #F5F5F5;
-    }
-    
-    ::-webkit-scrollbar-thumb
-    {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-      background-color: #555;
     }
 `;
 

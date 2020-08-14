@@ -19,7 +19,7 @@ const DropDown = styled.div`
   padding: 1rem;
   overflow: hidden;
   
-  transition: height 500ms ease;
+  transition: height ${props => props.theme.speed} ease;
 `
 const MenuItem = styled.a`
   display: flex;
@@ -38,9 +38,11 @@ const MenuItem = styled.a`
 `
 
 const Box = styled.div`
-  
   width: 100%;
-  &.menu-primary-enter {
+`
+
+const Transition = styled(CSSTransition)`
+    &.menu-primary-enter {
     position: absolute;
     transform: translateX(-110%);
     }
@@ -103,7 +105,7 @@ const DropDownMenu = (props) => {
     }
     return (
         <DropDown style={{height: menuHeight}} ref={dropdownRef}>
-            <CSSTransition in={activeMenu === 'main'}
+            <Transition in={activeMenu === 'main'}
                            unmountOnExit
                            timeout={500}
                            classNames="menu-primary"
@@ -123,9 +125,9 @@ const DropDownMenu = (props) => {
                         Animals
                     </DropDownItem>
                 </Box>
-            </CSSTransition>
+            </Transition>
 
-            <CSSTransition in={activeMenu === 'settings'}
+            <Transition in={activeMenu === 'settings'}
                            unmountOnExit
                            timeout={500}
                            classNames="menu-secondary"
@@ -139,9 +141,9 @@ const DropDownMenu = (props) => {
                     <DropDownItem leftIcon={<BoltIcon/>}>JavaScript</DropDownItem>
                     <DropDownItem leftIcon={<BoltIcon/>}>Awesome!</DropDownItem>
                 </Box>
-            </CSSTransition>
+            </Transition>
 
-            <CSSTransition in={activeMenu === 'animals'}
+            <Transition in={activeMenu === 'animals'}
                            unmountOnExit
                            timeout={500}
                            classNames="menu-secondary"
@@ -155,7 +157,7 @@ const DropDownMenu = (props) => {
                     <DropDownItem leftIcon="🦋">Horse</DropDownItem>
                     <DropDownItem leftIcon="🦔">Hedgehog</DropDownItem>
                 </Box>
-            </CSSTransition>
+            </Transition>
         </DropDown>
     )
 }

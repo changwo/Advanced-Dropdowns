@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {DefaultIcon} from "../../../style/GlobalButtons";
+import {ButtonOrSpan} from "../../../style/GlobalCSS";
 
 const Li = styled.li`
   width: calc(${props => props.theme.navSize} * 0.8);
@@ -8,7 +8,9 @@ const Li = styled.li`
   align-items: center;
   justify-content: center;
 `
-const Icon = styled(DefaultIcon)``
+const Icon = styled.a`
+  ${ButtonOrSpan}
+`
 
 const NavItem = ({icon, children}) => {
     const [open, setOpen] = useState(false);

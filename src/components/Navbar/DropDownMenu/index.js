@@ -5,7 +5,7 @@ import {ReactComponent as CogIcon} from '../../../icons/cog.svg';
 import {ReactComponent as ChevronIcon} from '../../../icons/chevron.svg';
 import {ReactComponent as BoltIcon} from '../../../icons/bolt.svg';
 import {ReactComponent as ArrowIcon} from '../../../icons/arrow.svg';
-import {DefaultSpan} from "../../../style/GlobalButtons";
+import {ButtonOrSpan} from "../../../style/GlobalCSS";
 
 
 const DropDown = styled.div`
@@ -30,10 +30,6 @@ const MenuItem = styled.a`
   padding: 0.5rem;
   :hover{
     background-color: #525357;
-  }
-
-  span{
-    
   }
 `
 
@@ -72,12 +68,20 @@ const Transition = styled(CSSTransition)`
     transition: all ${props => props.theme.speed} ease;
   }
 `
-const SpanLeft = styled(DefaultSpan)``
+const SpanLeft = styled.span`
+  ${ButtonOrSpan};
+  margin-right: 0.5rem;
+`
 const SpanRight = styled.span`
   margin-left: auto;
+  svg {
+    fill: ${props => props.theme.textColor};
+    width: 20px;
+    height: 20px;
+  }
 `
 
-const DropDownMenu = (props) => {
+const DropDownMenu = () => {
 
     const [activeMenu, setActiveMenu] = useState('main')
     const [menuHeight, setMenuHeight] = useState(null)

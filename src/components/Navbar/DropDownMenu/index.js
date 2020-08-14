@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import {CSSTransition} from "react-transition-group";
 import {ReactComponent as CogIcon} from '../../../icons/cog.svg';
 import {ReactComponent as ChevronIcon} from '../../../icons/chevron.svg';
 import {ReactComponent as BoltIcon} from '../../../icons/bolt.svg';
 import {ReactComponent as ArrowIcon} from '../../../icons/arrow.svg';
-import {DefaultIcon} from "../../../style/GlobalButtons";
 import {DefaultSpan} from "../../../style/GlobalButtons";
 
 
@@ -73,8 +72,8 @@ const Box = styled.div`
     transition: all ${props => props.theme.speed} ease;
   }
 `
-const IconLeft = styled(DefaultSpan)``
-const IconRight = styled(DefaultSpan)`
+const SpanLeft = styled(DefaultSpan)``
+const SpanRight = styled(DefaultSpan)`
   margin-left: auto;
 `
 
@@ -82,6 +81,11 @@ const DropDownMenu = (props) => {
 
     const [activeMenu, setActiveMenu] = useState('main')
     const [menuHeight, setMenuHeight] = useState(null)
+    const dropdownRef = useRef(null)
+
+    useEffect(() => {
+        setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
+    }, [])
 
     const calcHeight = el => {
         console.log(el);
@@ -93,14 +97,14 @@ const DropDownMenu = (props) => {
     const DropDownItem = ({children, leftIcon, rightIcon, goToMenu}) => {
         return (
             <MenuItem href="#" onClick={() => goToMenu && setActiveMenu(goToMenu)}>
-                <IconLeft>{leftIcon}</IconLeft>
+                <SpanLeft>{leftIcon}</SpanLeft>
                 {children}
-                <IconRight>{rightIcon}</IconRight>
+                <SpanRight>{rightIcon}</SpanRight>
             </MenuItem>
         )
     }
     return (
-        <DropDown style={{height: menuHeight}}>
+        <DropDown style={{height: menuHeight}} ref={dropdownRef}>
             <CSSTransition in={activeMenu === 'main'}
                            unmountOnExit
                            timeout={500}

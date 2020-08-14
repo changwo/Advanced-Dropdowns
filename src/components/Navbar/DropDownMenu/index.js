@@ -37,11 +37,11 @@ const Box = styled.div`
   width: 100%;
 `
 
-const Transition = styled(CSSTransition)`
-    &.menu-primary-enter {
+const TransitionPrimary = styled(CSSTransition)`
+  &.menu-primary-enter {
     position: absolute;
     transform: translateX(-110%);
-    }
+  }
   &.menu-primary-enter-active {
     transform: translateX(0%);
     transition: all ${props => props.theme.speed} ease;
@@ -54,9 +54,11 @@ const Transition = styled(CSSTransition)`
     transition: all ${props => props.theme.speed} ease;
   }
   
-   &.menu-secondary-enter {
+`
+const TransitionSecondary = styled(CSSTransition)`
+  &.menu-secondary-enter {
     transform: translateX(110%);
-    }
+  }
   &.menu-secondary-enter-active {
     transform: translateX(0%);
     transition: all ${props => props.theme.speed} ease;
@@ -68,6 +70,7 @@ const Transition = styled(CSSTransition)`
     transition: all ${props => props.theme.speed} ease;
   }
 `
+
 const SpanLeft = styled.span`
   ${ButtonOrSpan};
   margin-right: 0.5rem;
@@ -88,13 +91,12 @@ const DropDownMenu = () => {
     const dropdownRef = useRef(null)
 
     useEffect(() => {
-        setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
+        setMenuHeight(dropdownRef.current.firstChild.offsetHeight)
+        console.log(dropdownRef.current.firstChild.offsetHeight)
     }, [])
 
     const calcHeight = el => {
-        console.log(el);
         const height = el.offsetHeight;
-        console.log(height);
         setMenuHeight(height);
     }
 
@@ -109,11 +111,11 @@ const DropDownMenu = () => {
     }
     return (
         <DropDown style={{height: menuHeight}} ref={dropdownRef}>
-            <Transition in={activeMenu === 'main'}
-                           unmountOnExit
-                           timeout={500}
-                           classNames="menu-primary"
-                           onEnter={calcHeight}>
+            <TransitionPrimary in={activeMenu === 'main'}
+                               unmountOnExit
+                               timeout={500}
+                               classNames="menu-primary"
+                               onEnter={calcHeight}>
                 <Box>
                     <DropDownItem>My Profile</DropDownItem>
                     <DropDownItem
@@ -129,13 +131,13 @@ const DropDownMenu = () => {
                         Animals
                     </DropDownItem>
                 </Box>
-            </Transition>
+            </TransitionPrimary>
 
-            <Transition in={activeMenu === 'settings'}
-                           unmountOnExit
-                           timeout={500}
-                           classNames="menu-secondary"
-                           onEnter={calcHeight}>
+            <TransitionSecondary in={activeMenu === 'settings'}
+                                 unmountOnExit
+                                 timeout={500}
+                                 classNames="menu-secondary"
+                                 onEnter={calcHeight}>
                 <Box>
                     <DropDownItem leftIcon={<ArrowIcon/>} goToMenu="main">
                         <h2>My Tutorial</h2>
@@ -145,13 +147,13 @@ const DropDownMenu = () => {
                     <DropDownItem leftIcon={<BoltIcon/>}>JavaScript</DropDownItem>
                     <DropDownItem leftIcon={<BoltIcon/>}>Awesome!</DropDownItem>
                 </Box>
-            </Transition>
+            </TransitionSecondary>
 
-            <Transition in={activeMenu === 'animals'}
-                           unmountOnExit
-                           timeout={500}
-                           classNames="menu-secondary"
-                           onEnter={calcHeight}>
+            <TransitionSecondary in={activeMenu === 'animals'}
+                                 unmountOnExit
+                                 timeout={500}
+                                 classNames="menu-secondary"
+                                 onEnter={calcHeight}>
                 <Box>
                     <DropDownItem leftIcon={<ArrowIcon/>} goToMenu="main">
                         <h2>Animals</h2>
@@ -161,7 +163,7 @@ const DropDownMenu = () => {
                     <DropDownItem leftIcon="🦋">Horse</DropDownItem>
                     <DropDownItem leftIcon="🦔">Hedgehog</DropDownItem>
                 </Box>
-            </Transition>
+            </TransitionSecondary>
         </DropDown>
     )
 }

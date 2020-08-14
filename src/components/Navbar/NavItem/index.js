@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import {ButtonOrSpan} from "../../../style/GlobalCSS";
 
@@ -14,9 +14,25 @@ const Icon = styled.a`
 
 const NavItem = ({icon, children}) => {
     const [open, setOpen] = useState(false);
+    const NavItemRef = useRef()
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside, true)
+
+        return () => {
+            document.removeEventListener("click", handleClickOutside, true); // destroys event listener when component is unmounted
+        }
+    }, [])
+
+    const handleClickOutside = (event) => { // checks whether you're clicking on any point that isn't the dropdown
+        const domNode = NavItemRef.current;
+        if (!domNode || !domNode.contains(event.target)) {
+            setOpen(false);
+        }
+    };
 
     return (
-        <Li>
+        <Li ref={NavItemRef}>
             <Icon href="#" onClick={() => setOpen(!open)}>
                 {icon}
             </Icon>

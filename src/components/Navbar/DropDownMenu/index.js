@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {CSSTransition} from "react-transition-group";
 import {ReactComponent as CogIcon} from '../../../icons/cog.svg';
@@ -88,14 +88,7 @@ const SpanRight = styled.span`
 const DropDownMenu = () => {
 
     const [activeMenu, setActiveMenu] = useState('main')
-    const [menuHeight, setMenuHeight] = useState(null)
-    const dropdownRef = useRef(null)
-
-    useEffect(() => {
-        setMenuHeight(0)
-        setMenuHeight(dropdownRef.current.firstChild.offsetHeight)
-        console.log(dropdownRef.current.firstChild.offsetHeight)
-    }, [])
+    const [menuHeight, setMenuHeight] = useState('auto')
 
     const calcHeight = el => {
         const height = el.offsetHeight;
@@ -112,7 +105,7 @@ const DropDownMenu = () => {
         )
     }
     return (
-        <DropDown style={{height: menuHeight}} ref={dropdownRef}>
+        <DropDown style={{height: menuHeight}}>
             <TransitionPrimary in={activeMenu === 'main'}
                                unmountOnExit
                                timeout={500}

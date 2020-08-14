@@ -20,7 +20,7 @@ const NavItem = ({icon, children}) => {
         document.addEventListener('mousedown', handleClickOutside, true)
 
         return () => {
-            document.removeEventListener("click", handleClickOutside, true); // destroys event listener when component is unmounted
+            document.removeEventListener("mousedown", handleClickOutside, true); // destroys event listener when component is unmounted
         }
     }, [])
 

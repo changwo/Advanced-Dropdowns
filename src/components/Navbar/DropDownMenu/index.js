@@ -57,7 +57,6 @@ const Box = styled.div`
   }
   
    &.menu-secondary-enter {
-    position: absolute;
     transform: translateX(110%);
     }
   &.menu-secondary-enter-active {
@@ -65,7 +64,6 @@ const Box = styled.div`
     transition: all ${props => props.theme.speed} ease;
   }
   &.menu-secondary-exit {
-    //position: absolute;
   }
   &.menu-secondary-exit-active {
     transform: translateX(110%);
@@ -73,7 +71,7 @@ const Box = styled.div`
   }
 `
 const SpanLeft = styled(DefaultSpan)``
-const SpanRight = styled(DefaultSpan)`
+const SpanRight = styled.span`
   margin-left: auto;
 `
 

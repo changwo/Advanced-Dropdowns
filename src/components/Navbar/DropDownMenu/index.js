@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import {CSSTransition} from "react-transition-group";
 import {ReactComponent as CogIcon} from '../../../icons/cog.svg';
@@ -17,7 +17,6 @@ const DropDown = styled.div`
   border: ${props => props.theme.border};
   border-radius: ${props => props.theme.borderRadius};
   overflow: hidden;
-  
   transition: height ${props => props.theme.speed} ease;
 `
 const MenuItem = styled.a`
@@ -38,7 +37,7 @@ const Box = styled.div`
   box-sizing: border-box;
 `
 
-const TransitionPrimary = styled(CSSTransition)`
+const TransitionPrimary = styled(CSSTransition)`  
   &.menu-primary-enter {
     position: absolute;
     transform: translateX(-110%);
@@ -88,7 +87,13 @@ const SpanRight = styled.span`
 const DropDownMenu = () => {
 
     const [activeMenu, setActiveMenu] = useState('main')
-    const [menuHeight, setMenuHeight] = useState('auto')
+    const [menuHeight, setMenuHeight] = useState('0')
+
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        setMenuHeight(dropdownRef.current.firstChild.offsetHeight)
+    }, [])
 
     const calcHeight = el => {
         const height = el.offsetHeight;
@@ -105,7 +110,7 @@ const DropDownMenu = () => {
         )
     }
     return (
-        <DropDown style={{height: menuHeight}}>
+        <DropDown ref={dropdownRef} style={{height: menuHeight}}>
             <TransitionPrimary in={activeMenu === 'main'}
                                unmountOnExit
                                timeout={500}

@@ -41,7 +41,7 @@ export const lightTheme = { // The power of Styled Components really shines with
     bgAccent: "#c8c8c8",
     textColor: "#000000",
     navSize: "60px",
-    border: "1px solid #474a4d",
+    border: "1px solid #c8c8c8",
     borderRadius: "8px",
     speed: "500ms",
     pageColor: "#e9e9e9",

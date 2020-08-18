@@ -26,7 +26,6 @@ const ToggleBtn = styled.div`
 `;
 
 const ToggleButton = ({theme, toggleTheme}) => {
-    console.log(theme);
 
     return (
         <BtnContainer onClick={toggleTheme} active={theme === 'light'}>

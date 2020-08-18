@@ -25,6 +25,7 @@ const MenuItem = styled.a`
   display: flex;
   height: 50px;
   align-items: center;
+  cursor: pointer;
   border-radius: ${props => props.theme.borderRadius};
   transition: background ${props => props.theme.speed};
   padding: 0.5rem;
@@ -122,7 +123,7 @@ const DropDownMenu = ({toggleButton}) => {
                 <Box>
                     <DropDownItem>My Profile</DropDownItem>
                     <DropDownItem leftIcon={<BoltIcon/>} rightIcon={toggleButton}>
-                        <p>Toggle Theme</p>
+                        <p>Enable Dark Mode</p>
 
 
                     </DropDownItem>

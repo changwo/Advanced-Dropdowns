@@ -30,7 +30,6 @@ const NavBar = ({toggleButton}) => {
                 <NavItem icon={<MessengerIcon/>}/>
                 <NavItem  icon={<CaretIcon/>}>
                     <DropDownMenu toggleButton={toggleButton}/>
-
                 </NavItem>
             </ul>
         </Nav>

@@ -20,7 +20,7 @@ const Nav = styled.nav`
   }
 `
 
-const NavBar = () => {
+const NavBar = ({toggleButton}) => {
 
     return (
         <Nav>
@@ -28,8 +28,9 @@ const NavBar = () => {
                 <NavItem icon={<PlusIcon/>}/>
                 <NavItem icon={<BellIcon/>}/>
                 <NavItem icon={<MessengerIcon/>}/>
-                <NavItem icon={<CaretIcon/>}>
-                    <DropDownMenu/>
+                <NavItem  icon={<CaretIcon/>}>
+                    <DropDownMenu toggleButton={toggleButton}/>
+
                 </NavItem>
             </ul>
         </Nav>

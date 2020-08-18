@@ -1,5 +1,5 @@
 import React from "react";
-import styled  from "styled-components";
+import styled from "styled-components";
 
 const BtnContainer = styled.div`
   width: 40px;
@@ -11,7 +11,7 @@ const BtnContainer = styled.div`
   transition: all 0.5s;
   background-color: ${(props) => (props.active ? "#43A047" : "none")};
   cursor: pointer;
-  margin-right: 16px;
+
 `;
 
 const ToggleBtn = styled.div`
@@ -25,17 +25,14 @@ const ToggleBtn = styled.div`
   cursor: pointer;
 `;
 
-const ToggleButton = ({ toggleTheme, theme }) => {
-  // const [active, toggleActive] = useState(false);
-  // const activeHandler = (e) => {
-  //   e.preventDefault();
-  //   toggleActive(!active);
-  // };
-  return (
-    <BtnContainer onClick={toggleTheme} active={theme === 'light'}>
-      <ToggleBtn active={theme === 'light'}/>
-    </BtnContainer>
-  );
+const ToggleButton = ({theme, toggleTheme}) => {
+    console.log(theme);
+
+    return (
+        <BtnContainer onClick={toggleTheme} active={theme === 'light'}>
+            <ToggleBtn active={theme === 'light'}/>
+        </BtnContainer>
+    );
 };
 
 export default ToggleButton;

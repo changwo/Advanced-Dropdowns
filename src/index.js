@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {ThemeProvider} from "styled-components";
-import {defaultTheme, GlobalStyle} from "./style";
+import {darkTheme, GlobalStyle} from "./style";
 
 ReactDOM.render(
     <React.StrictMode>
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={darkTheme}>
             <GlobalStyle/>
             <App/>
         </ThemeProvider>
